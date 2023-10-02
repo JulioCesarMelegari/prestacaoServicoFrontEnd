@@ -10,13 +10,24 @@ import { ClientsService } from './../../clients.service';
 export class ClientsFormComponent {
 
   cliente: Client;
+  success: boolean = false;
+  erros : String[] | null = []
 
   constructor(private service: ClientsService){
-   this.cliente = service.getClient();
+   this.cliente = new Client();
   }
 
   onSubmit(){
-    console.log(this.cliente);
+    this.service
+      .save(this.cliente)
+      .subscribe(response =>{
+        this.success = true;
+        this.erros = null;
+        this.cliente = response;
+      }, errorResponse =>{
+        this.success=false;
+        this.erros = errorResponse.error.errors;
+      })
   }
 
 }

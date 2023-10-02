@@ -4,14 +4,26 @@
 </ol>
 <div class="container">
   <form action #clietForm="ngForm" (ngSubmit)="onSubmit()">
+
     <div class="row">
+      <div class="col-md-12">
+        <div class="alert alert-success" role="alert" *ngIf="success == true">
+          Cliente salvo com sucesso!
+        </div>
+
+        <div class="alert alert-danger" role="alert" *ngFor="let erro of erros">
+          {{erro}}
+        </div>
+      </div>
+    </div>
+
+    <div class="row" *ngIf="cliente.id">
       <div class="col-md-6">
         <div class="form-group">
           <label>Id:</label>
           <input type="text" class="form-control" disabled
-          [ngModel]="cliente.id"
-            name="id"
-          >
+            [ngModel]="cliente.id"
+            name="id">
         </div>
       </div>
 
@@ -20,8 +32,7 @@
           <label>Data Cadastro:</label>
           <input type="text" class="form-control" disabled
             [ngModel]="cliente.dateRegister"
-            name="dateRegister"
-          >
+            name="dateRegister">
         </div>
       </div>
     </div>
@@ -31,18 +42,16 @@
         <div class="form-group">
           <label>Nome:*</label>
           <input type="text" class="form-control"
-          [(ngModel)]="cliente.name"
-            name="name"
-          >
+            [(ngModel)]="cliente.name"
+            name="name">
         </div>
       </div>
       <div class="col-md-6">
         <div class="form-group">
           <label>CPF:*</label>
           <input type="text" class="form-control"
-          [(ngModel)]="cliente.cpf"
-            name="cpf"
-          >
+            [(ngModel)]="cliente.cpf"
+            name="cpf">
         </div>
       </div>
     </div>

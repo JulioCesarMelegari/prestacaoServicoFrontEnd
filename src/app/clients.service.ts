@@ -1,12 +1,20 @@
 import { Injectable } from '@angular/core';
 import { Client } from './clients/client';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ClientsService {
 
-  constructor() { }
+  private url: string = 'http://localhost:8080/controlService/clientes'
+
+  constructor(private http: HttpClient) { }
+
+  save(client: Client): Observable<Client>{
+    return this.http.post<Client>(this.url, client);
+  }
 
   getClient() : Client{
     let client: Client = new Client();
