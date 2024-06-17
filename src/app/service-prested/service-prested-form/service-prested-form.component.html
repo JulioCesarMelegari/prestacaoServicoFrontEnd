@@ -4,12 +4,16 @@
 </ol>
 <div class="container">
   <form #form="ngForm" (submit)="onSubmit()">
+
     <div class="row">
       <div class="col-md-12">
         <div class="form-group">
-          <label>Cliente:  </label>
-          <select class="form-control">
-            <option value="">Selecione...</option>
+          <label>Cliente: </label>
+          <!--sandalote informa que estamos passando um objeto no select-->
+          <select class="form-control"
+            [ngModelOptions]="{standalone:true}"
+            [(ngModel)]="servico.idClient">
+            <option value>Selecione...</option>
             <option *ngFor="let client of clients" [ngValue]="client.id">
               {{ client.name }}
             </option>
@@ -17,6 +21,41 @@
         </div>
       </div>
     </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label>Descrição:</label>
+          <input type="text" class="form-control"
+            [(ngModel)]="servico.description"
+            name="description" id="inputDescription">
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Data:</label>
+          <input type="text" class="form-control" [(ngModel)]="servico.date"
+            name="date" id="inputDate">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Preço:</label>
+          <input type="text" class="form-control" [(ngModel)]="servico.value"
+            name="value" id="inputValue">
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-3">
+        <button type="submit" class="btn btn-success">
+          <i class="fa fa-save"></i>Salvar</button>
+      </div>
+    </div>
+
   </form>
 </div>
-
