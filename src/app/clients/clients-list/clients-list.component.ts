@@ -34,7 +34,7 @@ export class ClientsListComponent implements OnInit {
   }
 
   newClients(){
-    this.router.navigate(['/clients-form'])
+    this.router.navigate(['/clients/form'])
   }
 
   getClientDelete(cliente: Client){
